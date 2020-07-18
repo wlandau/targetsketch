@@ -1,0 +1,13 @@
+^\.lintr$
+^.*\.Rproj$
+^\.Rproj\.user$
+app.R
+COPYRIGHT
+rsconnect
+rsconnect.R
+^README\.Rmd$
+^LICENSE\.md$
+^\.github$
+^Makefile$
+^CODE_OF_CONDUCT.md$
+^CONTRIBUTING.md$

@@ -1,0 +1,49 @@
+Package: targetsketch
+Title: Create and Visualize Targets Pipelines
+Description: A Shiny app for creating and visualizing
+  targets pipelines (<https://github.com/wlandau/targets>)
+  interactively. Simply supply a _targets.R file with the pipeline,
+  and supporting functions, and the app shows the dependency graph
+  and the manifest of targets.
+Version: 0.0.0.9000
+License: MIT + file LICENSE
+URL: https://github.com/wlandau/targetsketch
+BugReports: https://github.com/wlandau/targetsketch/issues
+Authors@R: c(
+  person(
+    family = "Landau",
+    given = c("William", "Michael"),
+    email = "will.landau@gmail.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-1878-3253")
+  ),
+  person(
+    family = "Eli Lilly and Company",
+    role = "cph"
+  ))
+Depends:
+  R (>= 3.5.0)
+Imports:
+  bs4Dash (>= 0.5.0),
+  DT (>= 0.14),
+  htmltools (>= 0.5.0),
+  shiny (>= 1.5.0),
+  shinyalert (>= 1.1),
+  shinyAce (>= 0.4.1),
+  shinybusy (>= 0.2.0),
+  shinycssloaders (>= 0.3),
+  targets,
+  tidyverse (>= 1.3.0),
+  visNetwork (>= 2.0.9),
+  withr (>= 2.2.0)
+Suggests:
+  pkgload (>= 1.1.0),
+  remotes (>= 2.1.1),
+  rmarkdown (>= 2.3),
+  rsconnect (>= 0.8.16)
+Remotes:
+  wlandau/targets
+Encoding: UTF-8
+Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1.9000
