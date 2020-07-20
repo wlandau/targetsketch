@@ -1,10 +1,10 @@
 Package: targetsketch
 Title: Create and Visualize Targets Pipelines
 Description: A Shiny app for creating and visualizing
-  targets pipelines (<https://github.com/wlandau/targets>)
-  interactively. Simply supply a _targets.R file with the pipeline,
-  and supporting functions, and the app shows the dependency graph
-  and the manifest of targets.
+  targets pipelines (<https://github.com/wlandau/targets>).
+  Simply supply a _targets.R file with the pipeline
+  and supporting functions, and the app shows a dependency graph
+  and manifest.
 Version: 0.0.0.9000
 License: MIT + file LICENSE
 URL: https://github.com/wlandau/targetsketch
