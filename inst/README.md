@@ -52,6 +52,6 @@ Contributions are welcome. If you plan to [file an
 issue](https://github.com/wlandau/targetsketch/issues/new/choose) or
 [submit a pull request](https://github.com/wlandau/targetsketch/pulls),
 please first read the [code of
-conduct](https://github.com/wlandau/targetsketch/blob/master/CODE_OF_CONDUCT.md)
+conduct](https://github.com/wlandau/targetsketch/blob/main/CODE_OF_CONDUCT.md)
 and [rules for
-contributing](https://github.com/wlandau/targetsketch/blob/master/CONTRIBUTING.md).
+contributing](https://github.com/wlandau/targetsketch/blob/main/CONTRIBUTING.md).
