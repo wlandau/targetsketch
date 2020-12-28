@@ -1,6 +1,5 @@
 library(targets)
-# library(tidyverse) # nolint
-tar_options(packages = c("biglm", "rmarkdown", "tidyverse"))
+tar_option_set(packages = c("biglm", "rmarkdown", "tidyverse"))
 
 create_plot <- function(data) {
   ggplot(data) +
