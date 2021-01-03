@@ -34,12 +34,11 @@ targetsketch::targetsketch()
 1.  Navigate to the `Pipeline` view (left sidebar).
 2.  Write your [`_targets.R`
     script](https://wlandau.github.io/targets-manual/walkthrough.html)
-    in the `_targets.R` box. The code must return a valid pipeline
-    object at the end, ideally with a call to the
-    [`tar_pipeline()`](https://wlandau.github.io/targets/reference/tar_pipeline.html)
-    function. If you want the app to analyze custom functions called in
-    the commands of the targets, define them in the `_targets.R` box as
-    well. See the
+    in the `_targets.R` box. The code must return a valid list of
+    [`tar_target()`](https://wlandau.github.io/targets/reference/tar_target.html)
+    objects at the end. If you want the app to analyze custom functions
+    called in the commands of the targets, define them in the
+    `_targets.R` box as well. See the
     [`tar_script()`](https://wlandau.github.io/targets/reference/tar_script.html)
     help file for more details.
 3.  Click `Update` button in the `Control` box.

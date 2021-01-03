@@ -7,7 +7,7 @@ create_plot <- function(data) {
     theme_gray(24)
 }
 
-tar_pipeline(
+list(
   tar_target(
     raw_data_file,
     "data/raw_data.csv",
