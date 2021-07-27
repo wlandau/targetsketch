@@ -15,6 +15,7 @@ ui <- function() {
             width = 12,
             status = "primary",
             closable = FALSE,
+            solidHeader = TRUE,
             shiny::actionButton(
               "update",
               "Update",
@@ -27,6 +28,7 @@ ui <- function() {
             width = 12,
             status = "primary",
             closable = FALSE,
+            solidHeader = TRUE,
             shinyAce::aceEditor(
               "script",
               default_target_text(),
@@ -47,6 +49,7 @@ ui <- function() {
             width = 12,
             status = "success",
             closable = FALSE,
+            solidHeader = TRUE,
             shinycssloaders::withSpinner(visNetwork::visNetworkOutput("graph"))
           ),
           bs4Dash::bs4Card(
@@ -54,13 +57,13 @@ ui <- function() {
             width = 12,
             status = "success",
             closable = FALSE,
+            solidHeader = TRUE,
             shinycssloaders::withSpinner(DT::dataTableOutput("manifest"))
           )
         )
       )
     )
   )
-
   ui_usage <- bs4Dash::bs4TabItem(
     tabName = "usage",
     bs4Dash::bs4Card(
@@ -68,19 +71,18 @@ ui <- function() {
       width = 12,
       status = "success",
       closable = FALSE,
+      solidHeader = TRUE,
       shiny::includeMarkdown(
         system.file("README.md", package = "targetsketch", mustWork = TRUE)
       )
     )
   )
-
   ui_body <- bs4Dash::bs4DashBody(
     bs4Dash::bs4TabItems(
       ui_pipeline,
       ui_usage
     )
   )
-
   ui_sidebar <- bs4Dash::bs4DashSidebar(
     skin = "light",
     status = "primary",
@@ -88,22 +90,21 @@ ui <- function() {
     title = "targetsketch",
     bs4Dash::bs4SidebarMenu(
       bs4Dash::bs4SidebarMenuItem(
-        "Pipeline",
+        text = "Pipeline",
         tabName = "pipeline",
-        icon = "project-diagram"
+        icon = shiny::icon("project-diagram")
       ),
       bs4Dash::bs4SidebarMenuItem(
-        "Usage",
+        text = "Usage",
         tabName = "usage",
-        icon = "book-reader"
+        icon = shiny::icon("book-reader")
       )
     )
   )
-
   bs4Dash::bs4DashPage(
     title = " targetsketch",
     body = ui_body,
-    navbar = bs4Dash::bs4DashNavbar(controlbarIcon = NULL),
+    header = bs4Dash::bs4DashNavbar(controlbarIcon = NULL),
     sidebar = ui_sidebar
   )
 }
