@@ -105,6 +105,7 @@ ui <- function() {
     title = " targetsketch",
     body = ui_body,
     header = bs4Dash::bs4DashNavbar(controlbarIcon = NULL),
-    sidebar = ui_sidebar
+    sidebar = ui_sidebar,
+    dark = NULL
   )
 }
