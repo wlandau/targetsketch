@@ -1,0 +1,4 @@
+Name: targets builder
+Description: R/Shiny app companion to targets R package.
+Binding: targetsketch
+Interactive: true
