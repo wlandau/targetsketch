@@ -7,20 +7,27 @@ server <- function(input, output, session) {
   )
   shiny::observeEvent(
     input$reset,{
-      visNetworkProxy("graph") |> 
+      prevSelectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
+      DTproxy <- DT::dataTableProxy("manifest")
+      DT::selectRows(DTproxy, list())
+      visNetwork::visNetworkProxy("graph") |> 
         visFit() |>
-        visUnselectAll()
+        visUnselectAll() |>
+        visUpdateNodes(nodes= data.frame(id = prevSelectedIDs, color = "#899DA4"))
     }
   )
   shiny::observeEvent(
     input$manifest_rows_selected, {
       print( values$manifest[input$manifest_rows_selected, ] )
+      allIDs <- values$manifest$name
       selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
-      print(selectedIDs)
       visNetworkProxy("graph") |>
-        visUpdateNodes(nodes= data.frame(id = selectedIDs, color = "green")) 
-    }
-  )
+        visUpdateNodes(nodes= data.frame(id = allIDs, color = "#899DA4"))
+      if( length(selectedIDs) > 0){
+        visNetworkProxy("graph") |>
+          visUpdateNodes(nodes= data.frame(id = selectedIDs, color = "green")) 
+      }
+    }, ignoreNULL = FALSE)
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
   output$download <- shiny::downloadHandler(
@@ -43,6 +50,5 @@ update_values <- function(values, input) {
 update_values_impl <- function(values) {
   values$graph <- targets::tar_glimpse(targets_only = FALSE) |>
     visNetwork::visInteraction(navigationButtons = TRUE)
-    # visNetwork::visLegend(useGroups = FALSE, addNodes = values, ncol = 1L, position = "right")
   values$manifest <- targets::tar_manifest()
 }
