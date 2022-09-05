@@ -5,6 +5,13 @@ server <- function(input, output, session) {
     update_values(values, input),
     ignoreNULL = FALSE
   )
+  shiny::observeEvent(
+    input$reset,{
+      visNetworkProxy("graph") |> 
+        visFit() |>
+        visUnselectAll()
+    }
+  )
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
   output$download <- shiny::downloadHandler(
@@ -25,6 +32,8 @@ update_values <- function(values, input) {
 }
 
 update_values_impl <- function(values) {
-  values$graph <- targets::tar_glimpse(targets_only = FALSE)
+  values$graph <- targets::tar_glimpse(targets_only = FALSE) |>
+    visNetwork::visInteraction(navigationButtons = TRUE)
+    # visNetwork::visLegend(useGroups = FALSE, addNodes = values, ncol = 1L, position = "right")
   values$manifest <- targets::tar_manifest()
 }
