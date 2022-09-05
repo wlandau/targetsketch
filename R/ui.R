@@ -21,8 +21,12 @@ ui <- function() {
               "Update",
               icon = shiny::icon("redo-alt")
             ),
-            shiny::downloadButton("download", "Download")
-          ),
+            shiny::downloadButton("download", "Download"),
+            shiny::actionButton(
+              "reset", 
+              "Reset",
+              icon = shiny::icon("undo-alt")
+            )),
           bs4Dash::bs4Card(
             title = "_targets.R",
             width = 12,
