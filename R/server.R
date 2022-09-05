@@ -12,6 +12,15 @@ server <- function(input, output, session) {
         visUnselectAll()
     }
   )
+  shiny::observeEvent(
+    input$manifest_rows_selected, {
+      print( values$manifest[input$manifest_rows_selected, ] )
+      selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
+      print(selectedIDs)
+      visNetworkProxy("graph") |>
+        visUpdateNodes(nodes= data.frame(id = selectedIDs, color = "green")) 
+    }
+  )
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
   output$download <- shiny::downloadHandler(
