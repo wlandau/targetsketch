@@ -2,6 +2,7 @@ ui <- function() {
   ui_pipeline <- bs4Dash::bs4TabItem(
     tabName = "pipeline",
     shinyalert::useShinyalert(),
+    rclipboard::rclipboardSetup(),
     htmltools::tags$head(
       htmltools::tags$style("#source{overflow-y:scroll; max-height: 400px;}")
     ),
@@ -21,7 +22,8 @@ ui <- function() {
               "Update",
               icon = shiny::icon("redo-alt")
             ),
-            shiny::downloadButton("download", "Download")
+            shiny::downloadButton("download", "Download"),
+            uiOutput("clip")
           ),
           bs4Dash::bs4Card(
             title = "_targets.R",
