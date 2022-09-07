@@ -24,7 +24,7 @@ ui <- function() {
             shiny::downloadButton("download", "Download"),
             shiny::actionButton(
               "reset", 
-              "Reset",
+              "Reset selection",
               icon = shiny::icon("undo-alt")
             )),
           bs4Dash::bs4Card(
