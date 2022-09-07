@@ -22,7 +22,7 @@ Authors@R: c(
     role = "cph"
   ))
 Depends:
-  R (>= 3.5.0)
+  R (>= 4.1.0)
 Imports:
   bs4Dash (>= 2.0.0),
   DT (>= 0.14),
