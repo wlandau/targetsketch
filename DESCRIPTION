@@ -20,6 +20,12 @@ Authors@R: c(
   person(
     family = "Eli Lilly and Company",
     role = "cph"
+  ),
+  person(
+    family = "Parmar",
+    given = "Sam",
+    email = "parmartsam@gmail.com",
+    role = "ctb"
   ))
 Depends:
   R (>= 3.5.0)
