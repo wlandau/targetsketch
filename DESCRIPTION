@@ -24,20 +24,20 @@ Authors@R: c(
 Depends:
   R (>= 3.5.0)
 Imports:
-    bs4Dash (>= 2.0.0),
-    DT (>= 0.14),
-    htmltools (>= 0.5.0),
-    shiny (>= 1.5.0),
-    shinyalert (>= 1.1),
-    shinyAce (>= 0.4.1),
-    shinybusy (>= 0.2.0),
-    shinycssloaders (>= 0.3),
-    targets (>= 0.2.0),
-    tarchetypes (>= 0.1.0),
-    tidyverse (>= 1.3.0),
-    visNetwork (>= 2.0.9),
-    withr (>= 2.2.0),
-    rclipboard
+  bs4Dash (>= 2.0.0),
+  DT (>= 0.14),
+  htmltools (>= 0.5.0),
+  rclipboard,
+  shiny (>= 1.5.0),
+  shinyalert (>= 1.1),
+  shinyAce (>= 0.4.1),
+  shinybusy (>= 0.2.0),
+  shinycssloaders (>= 0.3),
+  targets (>= 0.2.0),
+  tarchetypes (>= 0.1.0),
+  tidyverse (>= 1.3.0),
+  visNetwork (>= 2.0.9),
+  withr (>= 2.2.0)
 Suggests:
   pkgload (>= 1.1.0),
   remotes (>= 2.1.1),
