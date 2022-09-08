@@ -15,21 +15,24 @@ server <- function(input, output, session) {
       DTproxy <- DT::dataTableProxy("manifest")
       DT::selectRows(DTproxy, list())
       visNetwork::visNetworkProxy("graph") |>
-        visNetwork::visUpdateNodes(nodes= data.frame(id = prevSelectedIDs, color = "#899DA4"))
+        visNetwork::visUpdateNodes(nodes = data.frame(id = prevSelectedIDs,
+                                                      color = "#899DA4"))
     }
   )
   shiny::observeEvent(
     input$manifest_rows_selected, {
-      print( values$manifest[input$manifest_rows_selected, ] )
+      print(values$manifest[input$manifest_rows_selected, ])
       allIDs <- values$manifest$name
       selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       visNetwork::visNetworkProxy("graph") |>
-        visNetwork::visUpdateNodes(nodes= data.frame(id = allIDs, color = "#899DA4"))
-      if( length(selectedIDs) > 0){
+        visNetwork::visUpdateNodes(nodes = data.frame(id = allIDs,
+                                                      color = "#899DA4"))
+      if(length(selectedIDs) > 0) {
         visNetwork::visNetworkProxy("graph") |>
-          visNetwork:: visUpdateNodes(nodes= data.frame(id = selectedIDs, color = "green")) 
-      }
-    }, ignoreNULL = FALSE)
+          visNetwork::visUpdateNodes(nodes = data.frame(id = selectedIDs,
+                                                       color = "green")) 
+        }
+      }, ignoreNULL = FALSE)
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
   output$download <- shiny::downloadHandler(

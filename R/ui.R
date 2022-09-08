@@ -23,7 +23,7 @@ ui <- function() {
             ),
             shiny::downloadButton("download", "Download"),
             shiny::actionButton(
-              "reset", 
+              "reset",
               "Reset selection",
               icon = shiny::icon("undo-alt")
             )),
