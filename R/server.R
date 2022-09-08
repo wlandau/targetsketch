@@ -6,10 +6,10 @@ server <- function(input, output, session) {
     ignoreNULL = FALSE
   )
   shiny::observeEvent(
-    input$reset,{
-      visNetwork::visNetworkProxy("graph") |> 
+    input$reset, {
+      visNetwork::visNetworkProxy("graph") |>
         visNetwork::visFit() |>
-        visNetwork::visUnselectAll() 
+        visNetwork::visUnselectAll()
       req(input$manifest_rows_selected)
       prevSelectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       DTproxy <- DT::dataTableProxy("manifest")
@@ -27,10 +27,10 @@ server <- function(input, output, session) {
       visNetwork::visNetworkProxy("graph") |>
         visNetwork::visUpdateNodes(nodes = data.frame(id = allIDs,
                                                       color = "#899DA4"))
-      if(length(selectedIDs) > 0) {
+      if (length(selectedIDs) > 0) {
         visNetwork::visNetworkProxy("graph") |>
           visNetwork::visUpdateNodes(nodes = data.frame(id = selectedIDs,
-                                                       color = "green")) 
+                                                       color = "green"))
         }
       }, ignoreNULL = FALSE)
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
