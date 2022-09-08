@@ -22,7 +22,8 @@ ui <- function() {
               "Update",
               icon = shiny::icon("redo-alt")
             )),
-            shiny::div(style = "display:inline-block", shiny::downloadButton("download", "Download")),
+            shiny::div(style = "display:inline-block",
+                       shiny::downloadButton("download", "Download")),
             shiny::div(style = "display:inline-block", shiny::uiOutput("clip"))
           ),
           bs4Dash::bs4Card(

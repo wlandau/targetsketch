@@ -11,21 +11,22 @@ server <- function(input, output, session) {
     filename = function() "_targets.R",
     content = function(con) writeLines(input$script, con)
   )
-  
+
   output$clip <- renderUI({
     output$clip <- renderUI({
       rclipboard::rclipButton(
         inputId = "clipbtn",
         label = "Copy",
-        clipText = input$script, 
+        clipText = input$script,
         icon = icon("clipboard")
       )
     })
   })
-  
+
   observeEvent(input$clipbtn, {
-    shinyalert::shinyalert(title = "_targets.R copied to clipboard", type = "success") 
-  })  
+    shinyalert::shinyalert(title = "_targets.R copied to clipboard",
+                           type = "success")
+  })
 }
 
 update_values <- function(values, input) {
