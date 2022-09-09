@@ -28,8 +28,13 @@ ui <- function() {
             shiny::div(style = "display:inline-block", shiny::actionButton(
               "reset",
               "Reset selection",
-              icon = shiny::icon("undo-alt"))
-          )),
+              icon = shiny::icon("undo-alt"))),
+            shiny::div(style = "display:inline-block", shiny::actionButton(
+              "add_target",
+              "Add new target",
+              icon = shiny::icon("plus")
+            ))
+          ),
           bs4Dash::bs4Card(
             title = "_targets.R",
             width = 12,
