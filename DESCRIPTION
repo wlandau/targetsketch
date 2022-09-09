@@ -20,6 +20,12 @@ Authors@R: c(
   person(
     family = "Eli Lilly and Company",
     role = "cph"
+  ),
+  person(
+    family = "Parmar",
+    given = "Sam",
+    email = "parmartsam@gmail.com",
+    role = "ctb"
   ))
 Depends:
   R (>= 4.1.0)
@@ -27,6 +33,7 @@ Imports:
   bs4Dash (>= 2.0.0),
   DT (>= 0.14),
   htmltools (>= 0.5.0),
+  rclipboard,
   shiny (>= 1.5.0),
   shinyalert (>= 1.1),
   shinyAce (>= 0.4.1),
