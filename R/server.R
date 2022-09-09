@@ -56,16 +56,35 @@ server <- function(input, output, session) {
                            type = "success")
   })
 
-  shiny::observeEvent(input$add_target, {
-    original_text <- input$script
-    new_target_text <- "#new target placeholder"
-    shinyAce::updateAceEditor(
-      session,
-      "script",
-      paste0(c(original_text, new_target_text),
-              collapse = "\n")
-    )
-  })  
+  shiny::observeEvent( input$add_target, {
+    script_modal()
+  })
+  
+  shiny::observeEvent(input$modal_ok, {
+    print(input$modal_tar_name)
+    print(input$modal_tar_command)
+    if (nchar(input$modal_tar_name) > 1 &
+        nchar(input$modal_tar_command) > 1) {
+      original_text <- input$script
+      new_target_text <- paste0(
+        "tar_target(",
+        input$modal_tar_name, 
+        ", ",
+        input$modal_tar_command,
+        ")"
+      )
+      shiny::removeModal()
+      shinyAce::updateAceEditor(
+        session,
+        "script",
+        paste0(c(original_text, new_target_text),
+               collapse = "\n")
+      )
+      shinyalert::shinyalert(title = "Added new target to _targets.R",
+                             type = "success")
+    }
+  })
+
 }
 
 update_values <- function(values, input) {
@@ -83,4 +102,18 @@ update_values_impl <- function(values) {
   values$graph <- targets::tar_glimpse(targets_only = FALSE) |>
     visNetwork::visInteraction(navigationButtons = TRUE)
   values$manifest <- targets::tar_manifest()
+}
+
+script_modal <- function() {
+  shiny::showModal(
+    shiny::modalDialog(
+      shiny::textInput("modal_tar_name", "Enter target name"),
+      shiny::textInput("modal_tar_command", "Enter target command"),
+      title = "Declare the new target",
+      footer = tagList(
+        shiny::modalButton("Cancel"),
+        shiny::actionButton("modal_ok", "OK")
+      )
+    )
+  )
 }

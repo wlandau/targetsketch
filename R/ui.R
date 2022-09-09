@@ -31,7 +31,7 @@ ui <- function() {
               icon = shiny::icon("undo-alt"))),
             shiny::div(style = "display:inline-block", shiny::actionButton(
               "add_target",
-              "Add new target",
+              "Add target",
               icon = shiny::icon("plus")
             ))
           ),
