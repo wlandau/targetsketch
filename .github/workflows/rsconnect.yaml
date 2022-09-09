@@ -22,6 +22,6 @@ jobs:
           use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rsconnect
+          extra-packages: any::rsconnect, any::cpp11, any::prettyunits, any::progress
       - name: Deploy
         run: Rscript rsconnect.R
