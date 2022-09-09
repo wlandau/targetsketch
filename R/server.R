@@ -55,6 +55,17 @@ server <- function(input, output, session) {
     shinyalert::shinyalert(title = "_targets.R copied to clipboard",
                            type = "success")
   })
+
+  shiny::observeEvent(input$add_target, {
+    original_text <- input$script
+    new_target_text <- "#new target placeholder"
+    shinyAce::updateAceEditor(
+      session,
+      "script",
+      paste0(c(original_text, new_target_text),
+              collapse = "\n")
+    )
+  })  
 }
 
 update_values <- function(values, input) {
