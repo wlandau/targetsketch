@@ -51,7 +51,7 @@ server <- function(input, output, session) {
     })
   })
 
-  observeEvent(input$clipbtn, {
+  shiny::observeEvent(input$clipbtn, {
     shinyalert::shinyalert(title = "_targets.R copied to clipboard",
                            type = "success")
   })
