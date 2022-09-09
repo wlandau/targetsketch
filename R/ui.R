@@ -24,8 +24,12 @@ ui <- function() {
             )),
             shiny::div(style = "display:inline-block",
                        shiny::downloadButton("download", "Download")),
-            shiny::div(style = "display:inline-block", shiny::uiOutput("clip"))
-          ),
+            shiny::div(style = "display:inline-block", shiny::uiOutput("clip")),
+            shiny::div(style = "display:inline-block", shiny::actionButton(
+              "reset",
+              "Reset selection",
+              icon = shiny::icon("undo-alt"))
+          )),
           bs4Dash::bs4Card(
             title = "_targets.R",
             width = 12,
