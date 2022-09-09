@@ -33,6 +33,7 @@ Imports:
   bs4Dash (>= 2.0.0),
   DT (>= 0.14),
   htmltools (>= 0.5.0),
+  markdown,
   rclipboard,
   shiny (>= 1.5.0),
   shinyalert (>= 1.1),
