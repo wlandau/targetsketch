@@ -10,7 +10,7 @@ server <- function(input, output, session) {
       visNetwork::visNetworkProxy("graph") |>
         visNetwork::visFit() |>
         visNetwork::visUnselectAll()
-      req(input$manifest_rows_selected)
+      shiny::req(input$manifest_rows_selected)
       prevSelectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       DTproxy <- DT::dataTableProxy("manifest")
       DT::selectRows(DTproxy, list())
@@ -40,13 +40,13 @@ server <- function(input, output, session) {
     content = function(con) writeLines(input$script, con)
   )
 
-  output$clip <- renderUI({
-    output$clip <- renderUI({
+  output$clip <- shiny::renderUI({
+    output$clip <- shiny::renderUI({
       rclipboard::rclipButton(
         inputId = "clipbtn",
         label = "Copy",
         clipText = input$script,
-        icon = icon("clipboard")
+        icon = shiny::icon("clipboard")
       )
     })
   })
