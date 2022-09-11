@@ -29,7 +29,7 @@ ui <- function() {
               "reset",
               "Reset selection",
               icon = shiny::icon("undo-alt"))),
-            shiny::div(style = "display:inline-block", 
+            shiny::div(style = "display:inline-block",
                        bs4Dash::tooltip(
                          shiny::actionButton(
                            "add_target",

@@ -56,10 +56,10 @@ server <- function(input, output, session) {
                            type = "success")
   })
 
-  shiny::observeEvent( input$add_target, {
+  shiny::observeEvent(input$add_target, {
     script_modal()
   })
-  
+
   shiny::observeEvent(input$modal_ok, {
     print(input$modal_tar_name)
     print(input$modal_tar_command)
@@ -68,7 +68,7 @@ server <- function(input, output, session) {
       original_text <- input$script
       new_target_text <- paste0(
         " |>\nappend(tar_target(",
-        input$modal_tar_name, 
+        input$modal_tar_name,
         ", ",
         input$modal_tar_command,
         "))",
@@ -108,15 +108,18 @@ update_values_impl <- function(values) {
 script_modal <- function() {
   shiny::showModal(
     shiny::modalDialog(
-      shiny::textInput("modal_tar_name", 
+      shiny::textInput("modal_tar_name",
                        label = label_with_tooltip(
                          "Enter target name",
-                         paste0((get_function_doc(tar_target, targets)[42:57]), collapse="\n")
+                         paste0((get_function_doc(tar_target, targets)[42:57]),
+                                collapse = "\n")
                          )),
-      shiny::textAreaInput("modal_tar_command", 
+      shiny::textAreaInput("modal_tar_command",
                        label = label_with_tooltip(
                          "Enter target command",
-                         paste0((get_function_doc(tar_target, targets)[59]), collapse="\n")
+                         paste0((
+                           get_function_doc(tar_target, targets)[59]),
+                           collapse = "\n")
                          )),
       title = "Declare the new target",
       footer = tagList(
