@@ -20,3 +20,28 @@ default_target_text <- function() {
   lines <- readLines(path)
   paste(lines, collapse = "\n")
 }
+
+label_with_tooltip <- function(label, ...) {
+  shiny::tagList(
+    label,
+    shiny::a(
+      class = "help-icon",
+      href = "#",
+      "data-toggle" = "tooltip",
+      "data-html" = "true",
+      shiny::icon("circle-info"),
+      title = paste(...)
+    )
+  )
+}
+
+get_function_doc <- function(function_name, package_name) {
+  helptext <- help(topic = deparse(substitute(function_name)), 
+                   package = deparse(substitute(package_name)))
+  help_documentation <- tools:::.Rd_get_text(
+    utils:::.getHelpFile(
+      as.character(helptext))
+  )
+  return(help_documentation)
+}
+

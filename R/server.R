@@ -107,8 +107,16 @@ update_values_impl <- function(values) {
 script_modal <- function() {
   shiny::showModal(
     shiny::modalDialog(
-      shiny::textInput("modal_tar_name", "Enter target name"),
-      shiny::textInput("modal_tar_command", "Enter target command"),
+      shiny::textInput("modal_tar_name", 
+                       label = label_with_tooltip(
+                         "Enter target name",
+                         paste0((get_function_doc(tar_target, targets)[42:57]), collapse="\n")
+                         )),
+      shiny::textInput("modal_tar_command", 
+                       label = label_with_tooltip(
+                         "Enter target command",
+                         paste0((get_function_doc(tar_target, targets)[59]), collapse="\n")
+                         )),
       title = "Declare the new target",
       footer = tagList(
         shiny::modalButton("Cancel"),
