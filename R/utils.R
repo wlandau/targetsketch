@@ -36,8 +36,8 @@ label_with_tooltip <- function(label, ...) {
 }
 
 get_function_doc <- function(function_name, package_name) {
-  helptext <- utils::help(topic = deparse(substitute(function_name)),
-                   package = deparse(substitute(package_name)))
+  helptext <- utils::help(topic = (function_name),
+                   package = (package_name))
   help_documentation <- tools:::.Rd_get_text(
     utils:::.getHelpFile(
       as.character(helptext))

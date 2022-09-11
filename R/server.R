@@ -111,18 +111,19 @@ script_modal <- function() {
       shiny::textInput("modal_tar_name",
                        label = label_with_tooltip(
                          "Enter target name",
-                         paste0((get_function_doc(tar_target, targets)[42:57]),
-                                collapse = "\n")
+                         paste0((
+                           get_function_doc("tar_target", "targets")[42:57]),
+                           collapse = "\n")
                          )),
       shiny::textAreaInput("modal_tar_command",
                        label = label_with_tooltip(
                          "Enter target command",
                          paste0((
-                           get_function_doc(tar_target, targets)[59]),
+                           get_function_doc("tar_target", "targets")[59]),
                            collapse = "\n")
                          )),
       title = "Declare the new target",
-      footer = tagList(
+      footer = shiny::tagList(
         shiny::modalButton("Cancel"),
         shiny::actionButton("modal_ok", "OK")
       ),

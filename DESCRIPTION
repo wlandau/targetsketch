@@ -42,6 +42,8 @@ Imports:
   targets (>= 0.2.0),
   tarchetypes (>= 0.1.0),
   tidyverse (>= 1.3.0),
+  tools,
+  utils,
   visNetwork (>= 2.0.9),
   withr (>= 2.2.0)
 Suggests:
