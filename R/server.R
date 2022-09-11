@@ -108,12 +108,13 @@ script_modal <- function() {
   shiny::showModal(
     shiny::modalDialog(
       shiny::textInput("modal_tar_name", "Enter target name"),
-      shiny::textInput("modal_tar_command", "Enter target command"),
+      shiny::textAreaInput("modal_tar_command", "Enter target command"),
       title = "Declare the new target",
       footer = tagList(
         shiny::modalButton("Cancel"),
         shiny::actionButton("modal_ok", "OK")
-      )
+      ),
+      easyClose = TRUE
     )
   )
 }
