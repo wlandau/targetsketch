@@ -67,18 +67,19 @@ server <- function(input, output, session) {
         nchar(input$modal_tar_command) > 1) {
       original_text <- input$script
       new_target_text <- paste0(
-        "tar_target(",
+        " |>\nappend(tar_target(",
         input$modal_tar_name, 
         ", ",
         input$modal_tar_command,
-        ")"
+        "))",
+        sep = ""
       )
       shiny::removeModal()
       shinyAce::updateAceEditor(
         session,
         "script",
         paste0(c(original_text, new_target_text),
-               collapse = "\n")
+               collapse = "")
       )
       shinyalert::shinyalert(title = "Added new target to _targets.R",
                              type = "success")
