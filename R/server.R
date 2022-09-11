@@ -67,18 +67,19 @@ server <- function(input, output, session) {
         nchar(input$modal_tar_command) > 1) {
       original_text <- input$script
       new_target_text <- paste0(
-        "tar_target(",
+        " |>\nappend(tar_target(",
         input$modal_tar_name, 
         ", ",
         input$modal_tar_command,
-        ")"
+        "))",
+        sep = ""
       )
       shiny::removeModal()
       shinyAce::updateAceEditor(
         session,
         "script",
         paste0(c(original_text, new_target_text),
-               collapse = "\n")
+               collapse = "")
       )
       shinyalert::shinyalert(title = "Added new target to _targets.R",
                              type = "success")
@@ -112,7 +113,7 @@ script_modal <- function() {
                          "Enter target name",
                          paste0((get_function_doc(tar_target, targets)[42:57]), collapse="\n")
                          )),
-      shiny::textInput("modal_tar_command", 
+      shiny::textAreaInput("modal_tar_command", 
                        label = label_with_tooltip(
                          "Enter target command",
                          paste0((get_function_doc(tar_target, targets)[59]), collapse="\n")
@@ -121,7 +122,8 @@ script_modal <- function() {
       footer = tagList(
         shiny::modalButton("Cancel"),
         shiny::actionButton("modal_ok", "OK")
-      )
+      ),
+      easyClose = TRUE
     )
   )
 }
