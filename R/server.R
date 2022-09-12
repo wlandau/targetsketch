@@ -52,8 +52,9 @@ server <- function(input, output, session) {
   })
 
   shiny::observeEvent(input$clipbtn, {
-    shinyalert::shinyalert(title = "_targets.R copied to clipboard",
-                           type = "success")
+    shinyalert::shinyalert(
+      title = "_targets.R copied to clipboard",
+      type = "success")
   })
 
   shiny::observeEvent(input$add_target, {
@@ -63,11 +64,11 @@ server <- function(input, output, session) {
   shiny::observeEvent(input$modal_ok, {
     print(input$modal_tar_name)
     print(input$modal_tar_command)
-    if (nchar(input$modal_tar_name) > 1 &
-        nchar(input$modal_tar_command) > 1) {
+    if (nchar(input$modal_tar_name) > 0 &
+        nchar(input$modal_tar_command) > 0) {
       original_text <- input$script
       new_target_text <- paste0(
-        " |>\nappend(tar_target(",
+        " |>\n  append(tar_target(",
         input$modal_tar_name,
         ", ",
         input$modal_tar_command,
