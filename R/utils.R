@@ -38,8 +38,10 @@ label_with_tooltip <- function(label, ...) {
 get_function_doc <- function(function_name, package_name) {
   helptext <- utils::help(topic = (function_name),
                    package = (package_name))
-  help_documentation <- tools:::.Rd_get_text(
-    utils:::.getHelpFile(
+  rd_get_text <- utils::getFromNamespace(".Rd_get_text", "tools")
+  getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
+  help_documentation <- rd_get_text(
+    getHelpFile(
       as.character(helptext))
   )
   return(help_documentation)
