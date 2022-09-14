@@ -15,8 +15,10 @@ server <- function(input, output, session) {
       DTproxy <- DT::dataTableProxy("manifest")
       DT::selectRows(DTproxy, list())
       visNetwork::visNetworkProxy("graph") |>
-        visNetwork::visUpdateNodes(nodes = data.frame(id = prevSelectedIDs,
-                                                      color = "#899DA4"))
+        visNetwork::visUpdateNodes(
+          nodes = data.frame(id = prevSelectedIDs,
+                             color = "#899DA4")
+          )
     }
   )
   shiny::observeEvent(
@@ -25,12 +27,16 @@ server <- function(input, output, session) {
       allIDs <- values$manifest$name
       selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       visNetwork::visNetworkProxy("graph") |>
-        visNetwork::visUpdateNodes(nodes = data.frame(id = allIDs,
-                                                      color = "#899DA4"))
+        visNetwork::visUpdateNodes(
+          nodes = data.frame(id = allIDs,
+                             color = "#899DA4")
+          )
       if (length(selectedIDs) > 0) {
         visNetwork::visNetworkProxy("graph") |>
-          visNetwork::visUpdateNodes(nodes = data.frame(id = selectedIDs,
-                                                       color = "green"))
+          visNetwork::visUpdateNodes(
+            nodes = data.frame(id = selectedIDs,
+                               color = "green")
+            )
         }
       }, ignoreNULL = FALSE)
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
@@ -79,11 +85,15 @@ server <- function(input, output, session) {
       shinyAce::updateAceEditor(
         session,
         "script",
-        paste0(c(original_text, new_target_text),
-               collapse = "")
+        paste0(
+          c(original_text, new_target_text),
+          collapse = ""
+          )
       )
-      shinyalert::shinyalert(title = "Added new target to _targets.R",
-                             type = "success")
+      shinyalert::shinyalert(
+        title = "Added new target to _targets.R",
+        type = "success"
+        )
     }
   })
 
@@ -93,7 +103,7 @@ update_values <- function(values, input) {
   shinybusy::show_modal_spinner(
     spin = "self-building-square",
     text = "Analyzing the pipeline..."
-  )
+    )
   withr::local_dir(tempdir())
   writeLines(input$script, "_targets.R")
   with_handling(update_values_impl(values))
@@ -109,20 +119,22 @@ update_values_impl <- function(values) {
 script_modal <- function() {
   shiny::showModal(
     shiny::modalDialog(
-      shiny::textInput("modal_tar_name",
-                       label = label_with_tooltip(
-                         "Enter target name",
-                         paste0(
-                           tar_command_desc(),
-                           collapse = "\n")
-                         )),
-      shiny::textAreaInput("modal_tar_command",
-                       label = label_with_tooltip(
-                         "Enter target command",
-                         paste0(
-                           tar_name_desc(),
-                           collapse = "\n")
-                         )),
+      shiny::textInput(
+        "modal_tar_name",
+        label = label_with_tooltip(
+          "Enter target name",
+          paste0(
+            get_function_doc("tar_target", "targets")[42:57],
+            collapse = "\n")
+          )),
+      shiny::textAreaInput(
+        "modal_tar_command",
+        label = label_with_tooltip(
+          "Enter target command",
+          paste0(
+            get_function_doc("tar_target", "targets")[59],
+            collapse = "\n")
+          )),
       title = "Declare the new target",
       footer = shiny::tagList(
         shiny::modalButton("Cancel"),
