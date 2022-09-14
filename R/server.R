@@ -112,15 +112,15 @@ script_modal <- function() {
       shiny::textInput("modal_tar_name",
                        label = label_with_tooltip(
                          "Enter target name",
-                         paste0((
-                           get_function_doc("tar_target", "targets")[42:57]),
+                         paste0(
+                           tar_command_desc(),
                            collapse = "\n")
                          )),
       shiny::textAreaInput("modal_tar_command",
                        label = label_with_tooltip(
                          "Enter target command",
-                         paste0((
-                           get_function_doc("tar_target", "targets")[59]),
+                         paste0(
+                           tar_name_desc(),
                            collapse = "\n")
                          )),
       title = "Declare the new target",
