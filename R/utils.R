@@ -35,15 +35,94 @@ label_with_tooltip <- function(label, ...) {
   )
 }
 
-get_function_doc <- function(function_name, package_name) {
-  helptext <- utils::help(topic = (function_name),
-                   package = (package_name))
-  rd_get_text <- utils::getFromNamespace(".Rd_get_text", "tools")
-  getHelpFile <- utils::getFromNamespace(".getHelpFile", "utils")
-  help_documentation <- rd_get_text(
-    getHelpFile(
-      as.character(helptext))
+rd_get_text <- function(x) {
+  if (is.character(x)) {
+    return(c(x))
+  }
+  rval <- NULL
+  file <- textConnection("rval", "w", local = TRUE)
+  save <- options(useFancyQuotes = FALSE)
+  Rdsave <- tools::Rd2txt_options(underline_titles = FALSE)
+  sink(file)
+  tryCatch(
+    tools::Rd2txt(x, fragment = TRUE),
+    finally = {
+      sink()
+      options(save)
+      tools::Rd2txt_options(Rdsave)
+      close(file)
+    }
   )
+  if (is.null(rval)) {
+    rval <- character()
+  } else {
+    enc2utf8(rval)
+  }
+}
+
+fetchRdDB <- function(filebase, key = NULL) {
+  fun <- function(db) {
+    vals <- db$vals
+    vars <- db$vars
+    datafile <- db$datafile
+    compressed <- db$compressed
+    envhook <- db$envhook
+    fetch <- function(key) {
+      lazyLoadDBfetch(vals[key][[1L]], datafile, compressed, envhook)
+    }
+    `%notin%` <- Negate(`%in%`)
+    if (length(key)) {
+      if (key %notin% vars)
+        stop(gettextf(
+          "No help on %s found in RdDB %s",
+          sQuote(key),
+          sQuote(filebase)
+        ),
+        domain = NA)
+      fetch(key)
+    } else {
+      res <- lapply(vars, fetch)
+      names(res) <- vars
+      res
+    }
+  }
+  res <- lazyLoadDBexec(filebase, fun)
+  if (length(key)) {
+    res
+  } else {
+    invisible(res)
+  }
+}
+
+
+get_help_file <- function(file) {
+  path <- dirname(file)
+  dirpath <- dirname(path)
+  if (!file.exists(dirpath)) {
+    stop(gettextf("invalid %s argument", sQuote("file")),
+         domain = NA)
+  }
+  pkgname <- basename(dirpath)
+  RdDB <- file.path(path, pkgname)
+  if (!file.exists(paste0(RdDB, ".rdx"))) {
+    stop(
+      gettextf(
+        "package %s exists but was not installed under R >= 2.10.0
+                    so help cannot be accessed",
+        sQuote(pkgname)
+      ),
+      domain = NA
+    )
+  }
+  fetchRdDB(RdDB, basename(file))
+}
+
+get_function_doc <- function(function_name, package_name) {
+  helptext <- utils::help(
+    topic = (function_name),
+    package = (package_name)
+    )
+  help_documentation <- rd_get_text(get_help_file(as.character(helptext)))
   return(help_documentation)
 }
 
