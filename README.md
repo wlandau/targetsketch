@@ -2,12 +2,12 @@
 # targetsketch
 
 This R/Shiny app is a companion to the
-[`targets`](https://github.com/wlandau/targets) R package. It helps new
-users learn [`targets`](https://github.com/wlandau/targets), and it
+[`targets`](https://github.com/ropensci/targets) R package. It helps new
+users learn [`targets`](https://github.com/ropensci/targets), and it
 helps new and experienced users set up new
-[`targets`](https://github.com/wlandau/targets)-powered projects. Simply
-provide a [`_targets.R`
-script](https://wlandau.github.io/targets-manual/walkthrough.html), and
+[`targets`](https://github.com/ropensci/targets)-powered projects.
+Simply provide a [`_targets.R`
+script](https://books.ropensci.org/targets/walkthrough.html), and
 `targetsketch` will show you the end-to-end dependency graph of your
 workflow, a manifest of the pipeline, and produce a downloadable
 `_targets.R` script to get your project started.
@@ -33,13 +33,13 @@ targetsketch::targetsketch()
 
 1.  Navigate to the `Pipeline` view (left sidebar).
 2.  Write your [`_targets.R`
-    script](https://wlandau.github.io/targets-manual/walkthrough.html)
-    in the `_targets.R` box. The code must return a valid list of
-    [`tar_target()`](https://wlandau.github.io/targets/reference/tar_target.html)
+    script](https://books.ropensci.org/targets/walkthrough.html) in the
+    `_targets.R` box. The code must return a valid list of
+    [`tar_target()`](https://docs.ropensci.org/targets/reference/tar_target.html)
     objects at the end. If you want the app to analyze custom functions
     called in the commands of the targets, define them in the
     `_targets.R` box as well. See the
-    [`tar_script()`](https://wlandau.github.io/targets/reference/tar_script.html)
+    [`tar_script()`](https://docs.ropensci.org/targets/reference/tar_script.html)
     help file for more details.
 3.  Click `Update` button in the `Control` box.
 4.  If you want to download the code in the `_targets.R` box as an R

@@ -1,7 +1,6 @@
 ui <- function() {
   ui_pipeline <- bs4Dash::bs4TabItem(
     tabName = "pipeline",
-    shinyalert::useShinyalert(),
     rclipboard::rclipboardSetup(),
     htmltools::tags$head(
       htmltools::tags$style("#source{overflow-y:scroll; max-height: 400px;}")
@@ -17,27 +16,34 @@ ui <- function() {
             status = "primary",
             closable = FALSE,
             solidHeader = TRUE,
-            shiny::div(style = "display:inline-block", shiny::actionButton(
-              "update",
-              "Update",
-              icon = shiny::icon("redo-alt")
-            )),
-            shiny::div(style = "display:inline-block",
-                       shiny::downloadButton("download", "Download")),
+            shiny::div(
+              style = "display:inline-block",
+              shiny::actionButton(
+                "update",
+                "Update",
+                icon = shiny::icon("redo-alt")
+              )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shiny::downloadButton("download", "Download")
+            ),
             shiny::div(style = "display:inline-block", shiny::uiOutput("clip")),
             shiny::div(style = "display:inline-block", shiny::actionButton(
               "reset",
               "Reset selection",
               icon = shiny::icon("undo-alt"))),
-            shiny::div(style = "display:inline-block",
-                       bs4Dash::tooltip(
-                         shiny::actionButton(
-                           "add_target",
-                           "Add target",
-                           icon = shiny::icon("plus")),
-                         title = "Add new target to your list",
-                         placement = "bottom"
-            ))
+            shiny::div(
+              style = "display:inline-block",
+              bs4Dash::tooltip(
+                shiny::actionButton(
+                  "add_target",
+                  "Add target",
+                  icon = shiny::icon("plus")),
+                title = "Add new target to your list",
+                placement = "bottom"
+              )
+            )
           ),
           bs4Dash::bs4Card(
             title = "_targets.R",
@@ -66,7 +72,9 @@ ui <- function() {
             status = "success",
             closable = FALSE,
             solidHeader = TRUE,
-            shinycssloaders::withSpinner(visNetwork::visNetworkOutput("graph"))
+            shinycssloaders::withSpinner(
+              visNetwork::visNetworkOutput("graph")
+            )
           ),
           bs4Dash::bs4Card(
             title = "Manifest",

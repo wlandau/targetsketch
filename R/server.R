@@ -16,9 +16,8 @@ server <- function(input, output, session) {
       DT::selectRows(DTproxy, list())
       visNetwork::visNetworkProxy("graph") |>
         visNetwork::visUpdateNodes(
-          nodes = data.frame(id = prevSelectedIDs,
-                             color = "#899DA4")
-          )
+          nodes = data.frame(id = prevSelectedIDs, color = "#899DA4")
+        )
     }
   )
   shiny::observeEvent(
@@ -28,24 +27,23 @@ server <- function(input, output, session) {
       selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       visNetwork::visNetworkProxy("graph") |>
         visNetwork::visUpdateNodes(
-          nodes = data.frame(id = allIDs,
-                             color = "#899DA4")
-          )
+          nodes = data.frame(id = allIDs, color = "#899DA4")
+        )
       if (length(selectedIDs) > 0) {
         visNetwork::visNetworkProxy("graph") |>
           visNetwork::visUpdateNodes(
-            nodes = data.frame(id = selectedIDs,
-                               color = "green")
-            )
-        }
-      }, ignoreNULL = FALSE)
+            nodes = data.frame(id = selectedIDs, color = "green")
+          )
+      }
+    },
+    ignoreNULL = FALSE
+  )
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
   output$download <- shiny::downloadHandler(
     filename = function() "_targets.R",
     content = function(con) writeLines(input$script, con)
   )
-
   output$clip <- shiny::renderUI({
     output$clip <- shiny::renderUI({
       rclipboard::rclipButton(
@@ -56,22 +54,21 @@ server <- function(input, output, session) {
       )
     })
   })
-
   shiny::observeEvent(input$clipbtn, {
     shinyalert::shinyalert(
       title = "_targets.R copied to clipboard",
-      type = "success")
+      type = "success"
+    )
   })
-
   shiny::observeEvent(input$add_target, {
     script_modal()
   })
-
   shiny::observeEvent(input$modal_ok, {
     print(input$modal_tar_name)
     print(input$modal_tar_command)
-    if (nchar(input$modal_tar_name) > 0 &
-        nchar(input$modal_tar_command) > 0) {
+    if (
+      nchar(input$modal_tar_name) > 0 & nchar(input$modal_tar_command) > 0
+    ) {
       original_text <- input$script
       new_target_text <- paste0(
         " |>\n  append(tar_target(",
@@ -88,22 +85,21 @@ server <- function(input, output, session) {
         paste0(
           c(original_text, new_target_text),
           collapse = ""
-          )
+        )
       )
       shinyalert::shinyalert(
         title = "Added new target to _targets.R",
         type = "success"
-        )
+      )
     }
   })
-
 }
 
 update_values <- function(values, input) {
   shinybusy::show_modal_spinner(
     spin = "self-building-square",
     text = "Analyzing the pipeline..."
-    )
+  )
   withr::local_dir(tempdir())
   writeLines(input$script, "_targets.R")
   with_handling(update_values_impl(values))
@@ -125,8 +121,10 @@ script_modal <- function() {
           "Enter target name",
           paste0(
             tar_name_desc(),
-            collapse = "\n")
-          )),
+            collapse = "\n"
+          )
+        )
+      ),
       shiny::textAreaInput(
         "modal_tar_command",
         label = label_with_tooltip(
@@ -134,7 +132,8 @@ script_modal <- function() {
           paste0(
             tar_command_desc(),
             collapse = "\n")
-          )),
+        )
+      ),
       title = "Declare the new target",
       footer = shiny::tagList(
         shiny::modalButton("Cancel"),
