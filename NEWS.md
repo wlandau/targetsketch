@@ -5,6 +5,7 @@
 * Highlight graph target on manifest row select (#10, @parmsam)
 * Add button to reset Graph card view (#11, @parmsam)
 * Add navigation buttons to Graph card
+* Add button to insert code in script (#22, @parmsam)
 
 # Version 0.0.0.9000
 
