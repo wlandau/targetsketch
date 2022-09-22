@@ -43,6 +43,15 @@ ui <- function() {
                 title = "Add new target to your list",
                 placement = "bottom"
               )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shiny::actionButton(
+                inputId = "insert_code",
+                label = shiny::tagList(
+                  shiny::icon("arrow-circle-left"),
+                  "Insert code in script")
+              )
             )
           ),
           bs4Dash::bs4Card(

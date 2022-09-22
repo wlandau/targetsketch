@@ -93,6 +93,13 @@ server <- function(input, output, session) {
       )
     }
   })
+  shiny::observeEvent(input$insert_code, {
+    insert_in_source_editor(input$script)
+    shinyalert::shinyalert(
+      title = "Inserted code into RStudio script",
+      type = "success"
+      )
+  })
 }
 
 update_values <- function(values, input) {
@@ -141,5 +148,13 @@ script_modal <- function() {
       ),
       easyClose = TRUE
     )
+  )
+}
+
+insert_in_source_editor <- function(code) {
+  context <- rstudioapi::getSourceEditorContext()
+  rstudioapi::insertText(
+    text = paste0("\n", code, "\n"),
+    id = context$id
   )
 }
