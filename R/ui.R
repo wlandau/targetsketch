@@ -50,7 +50,8 @@ ui <- function() {
                 inputId = "insert_code",
                 label = shiny::tagList(
                   shiny::icon("arrow-circle-left"),
-                  "Insert code in script")
+                  "Insert code in script"
+                )
               )
             )
           ),

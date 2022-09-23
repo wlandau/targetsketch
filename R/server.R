@@ -98,7 +98,7 @@ server <- function(input, output, session) {
     shinyalert::shinyalert(
       title = "Inserted code into RStudio script",
       type = "success"
-      )
+    )
   })
 }
 
