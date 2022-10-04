@@ -43,6 +43,25 @@ ui <- function() {
                 title = "Add new target to your list",
                 placement = "bottom"
               )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shinyFiles::shinyFilesButton(
+                "loadFile",
+                "Load _targets.R",
+                title = 'Please select a file',
+                multiple = FALSE,
+                icon = shiny::icon("upload")
+              )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shinyFiles::shinySaveButton(
+                "saveFile",
+                "Save _targets.R",
+                title = 'Please select a folder',
+                icon = shiny::icon("save")
+              )
             )
           ),
           bs4Dash::bs4Card(
