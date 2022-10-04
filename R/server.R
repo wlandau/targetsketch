@@ -97,15 +97,15 @@ server <- function(input, output, session) {
     input$loadFile, {
       shinyFiles::shinyFileChoose(
         input,
-        'loadFile',
-        roots = c(root = '.'),
-        filetypes = c('', 'R', 'md')
+        "loadFile",
+        roots = c(root = "."),
+        filetypes = c("", "R", "r")
       )
       inFile <- shinyFiles::parseFilePaths(
         roots = c(root = "."),
         input$loadFile
       )
-      if(length(inFile$datapath) > 0){
+      if (length(inFile$datapath) > 0) {
         lines <- readLines(inFile$datapath)
         shinyAce::updateAceEditor(
           session,
@@ -119,7 +119,7 @@ server <- function(input, output, session) {
     }
   )
   observeEvent(
-    input$saveFile,{
+    input$saveFile, {
       shinyFiles::shinyFileSave(
         input,
         "saveFile",
@@ -128,7 +128,8 @@ server <- function(input, output, session) {
       if (length(input$saveFile) > 1) {
         fileinfo <- shinyFiles::parseSavePath(
           roots = c(root = "."),
-          input$saveFile)
+          input$saveFile
+        )
         writeLines(input$script, as.character(fileinfo$datapath))
       }
     }

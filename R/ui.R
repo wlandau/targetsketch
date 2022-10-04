@@ -49,7 +49,7 @@ ui <- function() {
               shinyFiles::shinyFilesButton(
                 "loadFile",
                 "Load _targets.R",
-                title = 'Please select a file',
+                title = "Please select a file",
                 multiple = FALSE,
                 icon = shiny::icon("upload")
               )
@@ -59,7 +59,7 @@ ui <- function() {
               shinyFiles::shinySaveButton(
                 "saveFile",
                 "Save _targets.R",
-                title = 'Please select a folder',
+                title = "Please select a folder",
                 icon = shiny::icon("save")
               )
             )
