@@ -59,6 +59,7 @@ ui <- function() {
               shinyFiles::shinySaveButton(
                 "saveFile",
                 "Save _targets.R",
+                filename = "_targets.R",
                 title = "Please select a folder",
                 icon = shiny::icon("save")
               )
