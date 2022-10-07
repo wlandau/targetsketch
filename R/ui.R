@@ -20,7 +20,7 @@ ui <- function() {
               style = "display:inline-block",
               shiny::actionButton(
                 "update",
-                "Update",
+                "Update displays",
                 icon = shiny::icon("redo-alt")
               )
             ),
