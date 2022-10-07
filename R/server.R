@@ -44,7 +44,7 @@ server <- function(input, output, session) {
     output$clip <- shiny::renderUI({
       rclipboard::rclipButton(
         inputId = "clipbtn",
-        label = "Copy",
+        label = "Copy _targets.R",
         clipText = input$script,
         icon = shiny::icon("clipboard")
       )
