@@ -40,10 +40,6 @@ server <- function(input, output, session) {
   )
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
-  output$download <- shiny::downloadHandler(
-    filename = function() "_targets.R",
-    content = function(con) writeLines(input$script, con)
-  )
   output$clip <- shiny::renderUI({
     output$clip <- shiny::renderUI({
       rclipboard::rclipButton(

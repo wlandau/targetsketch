@@ -24,10 +24,6 @@ ui <- function() {
                 icon = shiny::icon("redo-alt")
               )
             ),
-            shiny::div(
-              style = "display:inline-block",
-              shiny::downloadButton("download", "Download")
-            ),
             shiny::div(style = "display:inline-block", shiny::uiOutput("clip")),
             shiny::div(style = "display:inline-block", shiny::actionButton(
               "reset",
