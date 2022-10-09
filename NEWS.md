@@ -5,6 +5,8 @@
 * Highlight graph target on manifest row select (#10, @parmsam)
 * Add button to reset Graph card view (#11, @parmsam)
 * Add navigation buttons to Graph card
+* Add _targets.R saving and loading using shinyFiles package
+* Add argument into targetsketch() to load _targets.R script of interest
 
 # Version 0.0.0.9000
 
