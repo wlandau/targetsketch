@@ -20,13 +20,9 @@ ui <- function() {
               style = "display:inline-block",
               shiny::actionButton(
                 "update",
-                "Update",
+                "Update displays",
                 icon = shiny::icon("redo-alt")
               )
-            ),
-            shiny::div(
-              style = "display:inline-block",
-              shiny::downloadButton("download", "Download")
             ),
             shiny::div(style = "display:inline-block", shiny::uiOutput("clip")),
             shiny::div(style = "display:inline-block", shiny::actionButton(
@@ -42,6 +38,26 @@ ui <- function() {
                   icon = shiny::icon("plus")),
                 title = "Add new target to your list",
                 placement = "bottom"
+              )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shinyFiles::shinyFilesButton(
+                "loadFile",
+                "Load _targets.R",
+                title = "Please select a file",
+                multiple = FALSE,
+                icon = shiny::icon("upload")
+              )
+            ),
+            shiny::div(
+              style = "display:inline-block",
+              shinyFiles::shinySaveButton(
+                "saveFile",
+                "Save _targets.R",
+                filename = "_targets.R",
+                title = "Please select a folder",
+                icon = shiny::icon("save")
               )
             )
           ),

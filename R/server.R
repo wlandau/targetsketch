@@ -40,15 +40,11 @@ server <- function(input, output, session) {
   )
   output$manifest <- DT::renderDataTable(values$manifest, rownames = FALSE)
   output$graph <- visNetwork::renderVisNetwork(values$graph)
-  output$download <- shiny::downloadHandler(
-    filename = function() "_targets.R",
-    content = function(con) writeLines(input$script, con)
-  )
   output$clip <- shiny::renderUI({
     output$clip <- shiny::renderUI({
       rclipboard::rclipButton(
         inputId = "clipbtn",
-        label = "Copy",
+        label = "Copy _targets.R",
         clipText = input$script,
         icon = shiny::icon("clipboard")
       )
@@ -93,6 +89,48 @@ server <- function(input, output, session) {
       )
     }
   })
+  shiny::observeEvent(
+    input$loadFile, {
+      shinyFiles::shinyFileChoose(
+        input,
+        "loadFile",
+        roots = c(root = "."),
+        filetypes = c("", "R", "r")
+      )
+      inFile <- shinyFiles::parseFilePaths(
+        roots = c(root = "."),
+        input$loadFile
+      )
+      if (length(inFile$datapath) > 0) {
+        lines <- readLines(inFile$datapath)
+        shinyAce::updateAceEditor(
+          session,
+          "script",
+          paste(
+            lines,
+            collapse = "\n"
+          )
+        )
+      }
+    }
+  )
+  observeEvent(
+    input$saveFile, {
+      shinyFiles::shinyFileSave(
+        input,
+        "saveFile",
+        roots = c(root = ".")
+      )
+      if (length(input$saveFile) > 1) {
+        fileinfo <- shinyFiles::parseSavePath(
+          roots = c(root = "."),
+          input$saveFile
+        )
+        writeLines(input$script, as.character(fileinfo$datapath))
+      }
+    }
+  )
+
 }
 
 update_values <- function(values, input) {
