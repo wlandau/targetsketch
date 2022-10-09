@@ -4,7 +4,10 @@
 \alias{targetsketch}
 \title{Launch the targetsketch app}
 \usage{
-targetsketch()
+targetsketch(script = NULL)
+}
+\arguments{
+\item{script}{path of reference _targets.R script}
 }
 \description{
 Launch an interactive web application for
