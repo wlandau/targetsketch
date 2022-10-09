@@ -16,7 +16,7 @@ handle_error <- function(e) {
 }
 
 default_target_text <- function(path) {
-  if (is.null(path)){
+  if (is.null(path)) {
     path <- system.file("_targets.R", package = "targetsketch", mustWork = TRUE)
   } else if (file.exists(path) && grepl("_targets.R", path)) {
     cat()
