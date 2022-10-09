@@ -16,48 +16,55 @@ ui <- function() {
             status = "primary",
             closable = FALSE,
             solidHeader = TRUE,
-            shiny::div(
-              style = "display:inline-block",
-              shiny::actionButton(
-                "update",
-                "Update displays",
-                icon = shiny::icon("redo-alt")
-              )
-            ),
-            shiny::div(style = "display:inline-block", shiny::uiOutput("clip")),
-            shiny::div(style = "display:inline-block", shiny::actionButton(
-              "reset",
-              "Reset selection",
-              icon = shiny::icon("undo-alt"))),
-            shiny::div(
-              style = "display:inline-block",
-              bs4Dash::tooltip(
+            shiny::fluidRow(
+              shiny::div(
+                style = "display:inline-block",
                 shiny::actionButton(
-                  "add_target",
-                  "Add target",
-                  icon = shiny::icon("plus")),
-                title = "Add new target to your list",
-                placement = "bottom"
-              )
+                  "update",
+                  "Update displays",
+                  icon = shiny::icon("redo-alt")
+                )
+              ),
+              shiny::div(style = "display:inline-block", shiny::actionButton(
+                "reset",
+                "Reset selection",
+                icon = shiny::icon("undo-alt"))),
+              shiny::div(
+                style = "display:inline-block",
+                bs4Dash::tooltip(
+                  shiny::actionButton(
+                    "add_target",
+                    "Add target",
+                    icon = shiny::icon("plus")),
+                  title = "Add new target to your list",
+                  placement = "bottom"
+                )
+              ),
             ),
-            shiny::div(
-              style = "display:inline-block",
-              shinyFiles::shinyFilesButton(
-                "loadFile",
-                "Load _targets.R",
-                title = "Please select a file",
-                multiple = FALSE,
-                icon = shiny::icon("upload")
-              )
-            ),
-            shiny::div(
-              style = "display:inline-block",
-              shinyFiles::shinySaveButton(
-                "saveFile",
-                "Save _targets.R",
-                filename = "_targets.R",
-                title = "Please select a folder",
-                icon = shiny::icon("save")
+            shiny::fluidRow(
+              shiny::div(
+                style = "display:inline-block",
+                shiny::uiOutput("clip")
+              ),
+              shiny::div(
+                style = "display:inline-block",
+                shinyFiles::shinySaveButton(
+                  "saveFile",
+                  "Save _targets.R",
+                  filename = "_targets.R",
+                  title = "Please select a folder",
+                  icon = shiny::icon("save")
+                )
+              ),
+              shiny::div(
+                style = "display:inline-block",
+                shinyFiles::shinyFilesButton(
+                  "loadFile",
+                  "Load _targets.R",
+                  title = "Please select a file",
+                  multiple = FALSE,
+                  icon = shiny::icon("upload")
+                )
               )
             )
           ),
