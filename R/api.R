@@ -6,6 +6,6 @@
 #' \dontrun{
 #' targetsketch()
 #' }
-targetsketch <- function() {
-  shiny::shinyApp(ui = ui(), server = server)
+targetsketch <- function(script = NULL) {
+  shiny::shinyApp(ui = ui(path = script), server = server)
 }
