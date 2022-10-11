@@ -7,7 +7,10 @@
 targetsketch(script = NULL)
 }
 \arguments{
-\item{script}{path of reference _targets.R script}
+\item{script}{Character of length 1, path to an existing targets script.
+When \code{script} is \code{NULL} (default) then the function uses the default
+starting script. If \code{script} file does not exist then function will stop
+and user will get an error message.}
 }
 \description{
 Launch an interactive web application for
