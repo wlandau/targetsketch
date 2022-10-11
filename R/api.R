@@ -11,10 +11,14 @@
 #' targetsketch()
 #' }
 targetsketch <- function(script = NULL) {
-  if (file.exists(script) || is.null(script)) {
+  if (is.null(script) || file.exists(script)) {
     shiny::shinyApp(ui = ui(script = script), server = server)
   } else {
-    stop("Targets script does not exist at specified path. 
-          Please specify a file path that exists.")
+    stop(
+      paste(
+        "Targets script does not exist at specified path.",
+        "Please specify a file path that exists."
+      )
+    )
   }
 }
