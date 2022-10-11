@@ -22,7 +22,6 @@ server <- function(input, output, session) {
   )
   shiny::observeEvent(
     input$manifest_rows_selected, {
-      print(values$manifest[input$manifest_rows_selected, ])
       allIDs <- values$manifest$name
       selectedIDs <- values$manifest[input$manifest_rows_selected, ]$name
       visNetwork::visNetworkProxy("graph") |>
@@ -60,8 +59,6 @@ server <- function(input, output, session) {
     script_modal()
   })
   shiny::observeEvent(input$modal_ok, {
-    print(input$modal_tar_name)
-    print(input$modal_tar_command)
     if (
       nchar(input$modal_tar_name) > 0 & nchar(input$modal_tar_command) > 0
     ) {

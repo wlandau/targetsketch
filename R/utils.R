@@ -15,8 +15,12 @@ handle_error <- function(e) {
   "error"
 }
 
-default_target_text <- function() {
-  path <- system.file("_targets.R", package = "targetsketch", mustWork = TRUE)
+default_target_text <- function(script) {
+  if (is.null(script)) {
+    path <- system.file("_targets.R", package = "targetsketch", mustWork = TRUE)
+  } else {
+    path <- script
+  }
   lines <- readLines(path)
   paste(lines, collapse = "\n")
 }

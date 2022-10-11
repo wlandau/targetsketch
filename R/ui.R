@@ -1,4 +1,4 @@
-ui <- function() {
+ui <- function(script) {
   ui_pipeline <- bs4Dash::bs4TabItem(
     tabName = "pipeline",
     rclipboard::rclipboardSetup(),
@@ -22,13 +22,13 @@ ui <- function() {
                 shiny::actionButton(
                   "update",
                   "Update displays",
-                  icon = shiny::icon("redo-alt")
+                  icon = shiny::icon("redo-alt", verify_fa = FALSE)
                 )
               ),
               shiny::div(style = "display:inline-block", shiny::actionButton(
                 "reset",
                 "Reset selection",
-                icon = shiny::icon("undo-alt"))),
+                icon = shiny::icon("undo-alt", verify_fa = FALSE))),
               shiny::div(
                 style = "display:inline-block",
                 bs4Dash::tooltip(
@@ -53,7 +53,7 @@ ui <- function() {
                   "Save _targets.R",
                   filename = "_targets.R",
                   title = "Please select a folder",
-                  icon = shiny::icon("save")
+                  icon = shiny::icon("save", verify_fa = FALSE)
                 )
               ),
               shiny::div(
@@ -76,7 +76,7 @@ ui <- function() {
             solidHeader = TRUE,
             shinyAce::aceEditor(
               "script",
-              default_target_text(),
+              default_target_text(script),
               fontSize = 14,
               tabSize = 2,
               height = "600px"
@@ -139,12 +139,12 @@ ui <- function() {
       bs4Dash::bs4SidebarMenuItem(
         text = "Pipeline",
         tabName = "pipeline",
-        icon = shiny::icon("project-diagram")
+        icon = shiny::icon("project-diagram", verify_fa = FALSE)
       ),
       bs4Dash::bs4SidebarMenuItem(
         text = "Usage",
         tabName = "usage",
-        icon = shiny::icon("book-reader")
+        icon = shiny::icon("book-reader", verify_fa = FALSE)
       )
     )
   )
