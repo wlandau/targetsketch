@@ -1,4 +1,4 @@
-ui <- function(path) {
+ui <- function(script) {
   ui_pipeline <- bs4Dash::bs4TabItem(
     tabName = "pipeline",
     rclipboard::rclipboardSetup(),
@@ -76,7 +76,7 @@ ui <- function(path) {
             solidHeader = TRUE,
             shinyAce::aceEditor(
               "script",
-              default_target_text(path),
+              default_target_text(script),
               fontSize = 14,
               tabSize = 2,
               height = "600px"

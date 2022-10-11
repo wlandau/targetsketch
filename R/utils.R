@@ -15,15 +15,11 @@ handle_error <- function(e) {
   "error"
 }
 
-default_target_text <- function(path) {
-  if (is.null(path)) {
+default_target_text <- function(script) {
+  if (is.null(script)) {
     path <- system.file("_targets.R", package = "targetsketch", mustWork = TRUE)
-  } else if (file.exists(path) && grepl("_targets.R", path)) {
-    cat()
   } else {
-    message("_targets.R file does not exist at specified path")
-    message("defaulting to _targets.R template")
-    path <- system.file("_targets.R", package = "targetsketch", mustWork = TRUE)
+    path <- script
   }
   lines <- readLines(path)
   paste(lines, collapse = "\n")
