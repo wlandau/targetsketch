@@ -166,7 +166,8 @@ script_modal <- function() {
           "Enter target command",
           paste0(
             tar_command_desc(),
-            collapse = "\n")
+            collapse = "\n"
+          )
         )
       ),
       title = "Declare the new target",
