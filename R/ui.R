@@ -69,6 +69,7 @@ ui <- function(script) {
             )
           ),
           bs4Dash::bs4Card(
+            maximizable = TRUE,
             title = "_targets.R",
             width = 12,
             status = "primary",
@@ -90,6 +91,7 @@ ui <- function(script) {
         bs4Dash::bs4Sortable(
           width = 12,
           bs4Dash::bs4Card(
+            maximizable = TRUE,
             title = "Graph",
             width = 12,
             status = "success",
@@ -101,6 +103,7 @@ ui <- function(script) {
           ),
           bs4Dash::bs4Card(
             title = "Manifest",
+            maximizable = TRUE,
             width = 12,
             status = "success",
             closable = FALSE,
