@@ -8,5 +8,6 @@ deployApp(
   appDir = ".",
   appName = "targetsketch",
   account = Sys.getenv("SHINYAPPS_NAME"),
-  server = "shinyapps.io"
+  server = "shinyapps.io",
+  forceUpdate = TRUE
 )
