@@ -49,6 +49,7 @@ Imports:
   visNetwork (>= 2.0.9),
   withr (>= 2.2.0)
 Suggests:
+  biglm,
   pkgload (>= 1.1.0),
   remotes (>= 2.1.1),
   rmarkdown (>= 2.3),
