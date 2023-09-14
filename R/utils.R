@@ -17,7 +17,11 @@ handle_error <- function(e) {
 
 default_target_text <- function(script) {
   if (is.null(script)) {
-    path <- system.file("_targets.txt", package = "targetsketch", mustWork = TRUE)
+    path <- system.file(
+      "_targets.txt",
+      package = "targetsketch",
+      mustWork = TRUE
+    )
   } else {
     path <- script
   }
