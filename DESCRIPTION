@@ -5,7 +5,7 @@ Description: A Shiny app for creating and visualizing
   Simply supply a _targets.R file with the pipeline
   and supporting functions, and the app shows a dependency graph
   and manifest.
-Version: 0.0.0.9000
+Version: 0.0.1
 License: MIT + file LICENSE
 URL: https://github.com/wlandau/targetsketch
 BugReports: https://github.com/wlandau/targetsketch/issues
